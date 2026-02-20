@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Projet fil rouge – Cybersécurité</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#1d4ed8;
+      --blue2:#2563eb;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --bg:#ffffff;
+      --radius:16px;
+      --max:1050px;
+      --shadow: 0 18px 45px rgba(15,23,42,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Montserrat",system-ui,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(700px 360px at 15% 0%, #e0e7ff 0%, transparent 60%),
+        radial-gradient(700px 360px at 85% 0%, #dbeafe 0%, transparent 60%),
+        var(--bg);
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    .top{
+      position:sticky;top:0;z-index:10;
+      background:rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .top-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;gap:14px;
+    }
+    .back{
+      display:inline-flex;align-items:center;gap:10px;
+      font-weight:900;color:var(--blue);
+      padding:10px 12px;border-radius:12px;
+      border:1px solid rgba(29,78,216,.18);
+      background:rgba(29,78,216,.06);
+      transition:.15s;
+    }
+    .back:hover{background:rgba(29,78,216,.10);transform:translateY(-1px)}
+    .pill{
+      font-weight:800;color:var(--muted);
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+
+    header{padding:34px 0 10px}
+    .hero{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow: var(--shadow);
+      padding:18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;inset:-1px;
+      background: radial-gradient(700px 220px at 20% 0%, rgba(29,78,216,.10), transparent 55%);
+      pointer-events:none;
+    }
+    .hero > *{position:relative}
+    .kicker{
+      display:inline-flex;align-items:center;gap:8px;
+      font-weight:900;color:var(--blue);
+      background:rgba(29,78,216,.08);
+      border:1px solid rgba(29,78,216,.16);
+      padding:8px 10px;border-radius:999px;
+      font-size:13px;
+    }
+    h1{
+      margin:12px 0 8px;
+      font-size:34px;
+      letter-spacing:-.5px;
+      line-height:1.1;
+    }
+    .intro{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      font-weight:500;
+      max-width:900px;
+    }
+    main{padding:18px 0 42px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    .col-6{grid-column: span 6}
+    .col-12{grid-column: span 12}
+    @media (max-width:900px){
+      .col-6{grid-column: span 12}
+      h1{font-size:30px}
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow: 0 10px 30px rgba(15,23,42,.05);
+      padding:16px;
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .card p{
+      margin:0 0 10px;
+      color:var(--muted);
+      line-height:1.75;
+      font-weight:500;
+    }
+    .list{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.85;
+      font-weight:500;
+    }
+    .list li{margin:6px 0}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .chip{
+      padding:7px 10px;border-radius:999px;
+      border:1px solid var(--border);
+      background:#f8fafc;
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+    }
+    .gallery-head{
+      display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+      margin-bottom:12px;
+    }
+    .gallery-head p{margin:0;color:var(--muted);font-weight:600}
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+    }
+    @media (max-width:800px){.gallery{grid-template-columns:1fr}}
+    .shot{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#fff;
+      box-shadow: 0 10px 25px rgba(15,23,42,.06);
+      transition:.18s;
+    }
+    .shot:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(15,23,42,.10)}
+    .shot img{
+      width:100%;
+      display:block;
+      height:260px;
+      object-fit:cover;
+      transition: transform .25s ease;
+    }
+    .shot:hover img{transform:scale(1.03)}
+    .cap{
+      padding:12px 12px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:22px 0;
+      text-align:center;
+      color:var(--muted);
+      font-weight:650;
+      font-size:14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+    <div class="wrap top-inner">
+      <a class="back" href="index.html">← Retour au portfolio</a>
+      <span class="pill">Projet fil rouge — BTS SIO</span>
+    </div>
+  </div>
+
+  <header class="wrap">
+    <div class="hero">
+      <div class="kicker">Cybersécurité • PHP • MariaDB • VM Debian</div>
+      <h1>Projet fil rouge — Sécurisation d’une application web</h1>
+      <p class="intro">
+        Développement d’une application de commentaires en <b>PHP</b> avec <b>MariaDB</b>, déployée sur une machine virtuelle
+        <b>Debian</b>. L’application a été testée sur des vulnérabilités (SQLi, XSS, CSRF) puis corrigée en appliquant des
+        bonnes pratiques de sécurité (requêtes préparées, échappement des données, token CSRF).
+      </p>
+      <div class="chips">
+        <span class="chip">Développement</span>
+        <span class="chip">Déploiement serveur</span>
+        <span class="chip">Analyse de risques</span>
+        <span class="chip">Sécurisation</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <section class="card col-6">
+        <h2>1) Développement local</h2>
+        <p>Création d’une application permettant de poster et afficher des commentaires.</p>
+        <ul class="list">
+          <li>Formulaire de saisie + traitement serveur</li>
+          <li>Insertion des données en base</li>
+          <li>Affichage de la liste des commentaires</li>
+        </ul>
+      </section>
+
+      <section class="card col-6">
+        <h2>2) Déploiement sur VM</h2>
+        <p>Déploiement sur une VM Debian accessible à distance.</p>
+        <ul class="list">
+          <li>Installation Apache / PHP / MariaDB</li>
+          <li>Transfert des fichiers (SFTP)</li>
+          <li>Création de la base + utilisateur dédié</li>
+        </ul>
+      </section>
+
+      <section class="card col-6">
+        <h2>3) Vulnérabilités testées</h2>
+        <p>Identification et exploitation dans un cadre pédagogique.</p>
+        <ul class="list">
+          <li><b>SQLi</b> : requêtes construites par concaténation</li>
+          <li><b>XSS</b> : affichage direct sans échappement</li>
+          <li><b>CSRF</b> : absence de jeton et de vérification</li>
+        </ul>
+      </section>
+
+      <section class="card col-6">
+        <h2>4) Correctifs appliqués</h2>
+        <p>Sécurisation de l’application avec des bonnes pratiques.</p>
+        <ul class="list">
+          <li><b>PDO</b> + requêtes préparées contre SQLi</li>
+          <li><code>htmlspecialchars()</code> contre XSS</li>
+          <li>Token <b>CSRF</b> en session + vérification</li>
+        </ul>
+      </section>
+
+      <section class="card col-12">
+        <div class="gallery-head">
+          <h2 style="margin:0">Captures et démonstrations</h2>>
+        </div>
+
+        <div class="gallery">
+          <div class="shot">
+            <img src="assets/Injection.png" alt="Injection SQL">
+            <div class="cap">Injection SQL (SQLi) — erreur / manipulation de requête</div>
+          </div>
+          <div class="shot">
+            <img src="assets/xss.png" alt="Faille XSS">
+            <div class="cap">XSS — exécution de script côté navigateur</div>
+          </div>
+          <div class="shot">
+            <img src="assets/crsf.png" alt="Faille CSRF">
+            <div class="cap">CSRF — ajout de commentaire via page externe</div>
+          </div>
+          <div class="shot">
+            <img src="assets/securisation.png" alt="Sécurisation">
+            <div class="cap">Correctifs — PDO, échappement, token CSRF</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Fahmi Mohamed — Projet fil rouge BTS SIO
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
