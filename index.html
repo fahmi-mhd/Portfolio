@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="style.css">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PortFolio - Fahmi Mohamed</title>
+  <title>Fahmi Mohamed — Portfoliog</title>
   <meta name="description" content="Portfolio BTS SIO - Fahmi Mohamed" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,8 +211,12 @@
           </tbody>
         </table>
       </div>
+              <button class="btn" id="openTableau" type="button">
+  Voir le tableau officiel
+        </button>
     </div>
   </section>
+  
 
   <section id="projet">
     <div class="wrap">
@@ -231,7 +235,7 @@
           </div>
 
           <div class="project-body">
-            <h3 class="project-title">ALTIS (entreprise fictive)</h3>
+            <h3 class="project-title">Hackathon</h3>
             <p class="project-desc">
               Projet d’équipe : création d’une entreprise fictive, présence en ligne et site publié.
               Mise en place : inventaire, gestion des tickets, configuration des profils et catégories.
@@ -300,7 +304,6 @@
           <h3>Me joindre</h3>
           <p>
             Email : <a href="mailto:fahmi-mohamed@outlook.com" style="color:var(--b); font-weight:800;">fahmi-mohamed@outlook.com</a><br>
-            Téléphone : 06 51 27 89 13<br>
           </p>
         </div>
         <div class="card col-6">
@@ -316,10 +319,38 @@
 
   <footer>
     © <span id="year"></span> Fahmi Mohamed — Portfolio BTS SIO
+  
   </footer>
+<div class="tableau-modal" id="tableauModal">
+  <div class="tableau-modal-inner">
+    <button class="tableau-close" id="closeTableau" type="button">×</button>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    <embed
+      src="assets/tsio.pdf"
+      class="tableau-frame">
+  </embed>
+  </div>
+</div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const openTableau = document.getElementById("openTableau");
+  const closeTableau = document.getElementById("closeTableau");
+  const tableauModal = document.getElementById("tableauModal");
+
+  openTableau.addEventListener("click", () => {
+    tableauModal.classList.add("open");
+  });
+
+  closeTableau.addEventListener("click", () => {
+    tableauModal.classList.remove("open");
+  });
+
+  tableauModal.addEventListener("click", (e) => {
+    if(e.target === tableauModal){
+      tableauModal.classList.remove("open");
+    }
+  });
+</script>
 </body>
 </html>
