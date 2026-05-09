@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Projet ALTIS — Fahmi Mohamed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="btn outline" href="index.html">← Retour portfolio</a>
+    <strong>Projet ALTIS</strong>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" style="margin-top:24px">
+    <h1>ALTIS — Entreprise fictive</h1>
+    <p class="hero-sub">
+      Projet d’équipe réalisé en BTS SIO consistant à créer une entreprise fictive,
+      mettre en place un système de gestion informatique et assurer une présence en ligne.
+    </p>
+
+    <div class="project-actions">
+      <a class="pbtn primary" href="https://altis.alwaysdata.net" target="_blank">
+        Voir le site ALTIS
+      </a>
+    </div>
+  </section>
+
+  <section style="margin-top:26px">
+    <h2 class="title">Objectifs du projet</h2>
+    <div class="grid">
+      <div class="card col-6">
+        <ul>
+          <li>Créer une entreprise fictive réaliste</li>
+          <li>Gérer un parc informatique avec GLPI</li>
+          <li>Mettre en place un système de tickets</li>
+          <li>Organiser le travail en équipe</li>
+        </ul>
+      </div>
+
+      <div class="card col-6">
+        <ul>
+          <li>Développer des compétences en support IT</li>
+          <li>Structurer les services et profils utilisateurs</li>
+          <li>Publier un site web fonctionnel</li>
+          <li>Produire des livrables professionnels</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:26px">
+    <h2 class="title">Technologies utilisées</h2>
+
+    <div class="grid">
+      <div class="skill col-4">
+        <div class="icon">GLPI</div>
+        <div>
+          <h4>GLPI</h4>
+          <p>Inventaire, tickets, profils, catégories</p>
+        </div>
+      </div>
+
+      <div class="skill col-4">
+        <div class="icon">WEB</div>
+        <div>
+          <h4>Site web</h4>
+          <p>HTML / CSS – hébergement AlwaysData</p>
+        </div>
+      </div>
+
+      <div class="skill col-4">
+        <div class="icon">TEAM</div>
+        <div>
+          <h4>Travail d’équipe</h4>
+          <p>Organisation, répartition des tâches</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:26px">
+    <h2 class="title">Travail réalisé</h2>
+
+    <div class="card">
+      <ul>
+        <li>Installation et configuration de GLPI</li>
+        <li>Création des utilisateurs et profils</li>
+        <li>Mise en place du système de tickets</li>
+        <li>Création et publication du site ALTIS</li>
+        <li>Documentation et livrables de projet</li>
+      </ul>
+    </div>
+  </section>
+
+<!-- PREUVES -->
+<div class="altis-gallery" style="margin-top:14px">
+  <button class="shot" type="button" data-full="assets/tickets.png" aria-label="Ouvrir Tickets GLPI">
+    <img src="assets/tickets.png" alt="Tickets GLPI">
+    <span class="cap">Tickets GLPI</span>
+  </button>
+
+  <button class="shot" type="button" data-full="assets/parc_complet.png" aria-label="Ouvrir Parc informatique">
+    <img src="assets/parc_complet.png" alt="Parc informatique">
+    <span class="cap">Parc informatique</span>
+  </button>
+
+  <button class="shot" type="button" data-full="assets/recensement_logiciels.jpg" aria-label="Ouvrir Recensement logiciels">
+    <img src="assets/recensement_logiciels.jpg" alt="Recensement des logiciels">
+    <span class="cap">Recensement logiciels</span>
+  </button>
+
+  <button class="shot" type="button" data-full="assets/recensement_ordinateurs.jpg" aria-label="Ouvrir Recensement ordinateurs">
+    <img src="assets/recensement_ordinateurs.jpg" alt="Recensement des ordinateurs">
+    <span class="cap">Recensement ordinateurs</span>
+  </button>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Aperçu de l'image">
+    <button class="lightbox-close" id="lbClose" type="button" aria-label="Fermer">✕</button>
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+  </div>
+</div>
+</main>
+
+<footer>
+  © <span id="year"></span> Fahmi Mohamed — Projet ALTIS
+</footer>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lbImg");
+  const lbClose = document.getElementById("lbClose");
+
+  function openLightbox(src, alt){
+    lbImg.src = src;
+    lbImg.alt = alt || "Aperçu";
+    lb.classList.add("open");
+    lb.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox(){
+    lb.classList.remove("open");
+    lb.setAttribute("aria-hidden","true");
+    lbImg.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll(".shot[data-full]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const src = btn.getAttribute("data-full");
+      const img = btn.querySelector("img");
+      openLightbox(src, img ? img.alt : "Aperçu");
+    });
+  });
+
+  lbClose.addEventListener("click", closeLightbox);
+  lb.addEventListener("click", (e)=>{ if(e.target === lb) closeLightbox(); });
+  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeLightbox(); });
+</script>
+</body>
+</html>
